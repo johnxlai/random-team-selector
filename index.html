@@ -3,13 +3,72 @@
 <head>
   <script>document.documentElement.className=document.documentElement.className.replace("no-js","yes-js");window.G={D:{_qj:[]}};G.Q=function(k){G.D._qj.push(k)};</script>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Random Team Selector</title>
+
   <link rel="stylesheet" href="dist/css/style.css">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
-  <h1>😀 Go time.</h1>
+  <header>
+  		<h1>Team Selector</h1>
+  	</header>
+
+  	<section>
+  		<!-- Add name here -->
+  		<div class="full container--black">
+  			<h2>add name here</h2>
+  			<form>
+  			  Name: <input id="userInput" type="text" name="name">
+  			  <input id="submit-button" type="submit" value="Submit">
+  			</form>
+  			<h3>Players</h3>
+  			<ul class="playerList"></ul>
+  		</div>
+  	</section>
+  	<section>
+  		<!-- Team A -->
+  		<article>
+  			<p>Team A</p>
+  		</article>
+  		<article>
+  			<p>Team B</p>
+  		</article>
+  	</section>
+
 
   <script src="dist/js/main.js"></script>
+
+
+  <script>
+		$(document).ready(function(){
+
+			//user adding player names
+	  	$('#submit-button').on('click', function(e){
+	  		e.preventDefault();
+
+		  	var userInput = $('#userInput').val();
+		  	if( userInput === ""){
+		  		alert(`Input is empty`);
+		  	}else {
+		  		$('.playerList').append('<li>' + userInput + '</li>');
+	  			$('#userInput').val('')
+		  	}
+	  	});
+
+	  	//Assigning A B C
+
+		});
+
+
+
+  	// Random Team Selector
+
+  	// Enter Player Name
+  	// Each player either goes to Team A  or Team B
+  	// if team A is equal more than half or the total number than send players to team B
+
+
+  </script>
+
 </body>
 </html>

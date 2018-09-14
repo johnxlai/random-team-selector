@@ -23,6 +23,12 @@
   			</form>
   			<h3>Players</h3>
   			<ul class="playerList"></ul>
+
+        <h4>Total number of players</h4>
+        <form>
+          number of player: <input class="totalPlayers" id="" type="text" name="name">
+          <input class="divid" id="" type="submit" value="Divide Team">
+        </form>
   		</div>
   	</section>
   	<section>
@@ -41,9 +47,10 @@
 
   <script>
 		$(document).ready(function(){
+      let totalA = 0;
+      let totalB = 0;
 
-			let totalA = 0;
-			let totalB = 0;
+
 
 			//user adding player names
 	  	$('#submit-button').on('click', function(e){
@@ -68,11 +75,18 @@
 	  	var team = getRandom();
 	  	console.log(team);
 
-	  	if (team == 1 ){
-	  		 totalA = totalA + 1
-	  	}else {
-	  		totalB = totalB + 1
-	  	}
+	  	// if (team == 1 ){
+	  	// 	 totalA = totalA + 1
+	  	// }else {
+	  	// 	totalB = totalB + 1
+	  	// }
+
+      let totalPlayers = "0"
+
+      $('.divid').on('click', function(){
+        totalPlayers
+
+      });
 
 
 

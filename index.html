@@ -42,6 +42,9 @@
   <script>
 		$(document).ready(function(){
 
+			let totalA = 0;
+			let totalB = 0;
+
 			//user adding player names
 	  	$('#submit-button').on('click', function(e){
 	  		e.preventDefault();
@@ -61,7 +64,21 @@
 	  	function getRandom() {
 	  	  return Math.floor(Math.random() * 2) + 1
 	  	}
-	  	console.log(getRandom());
+
+	  	var team = getRandom();
+	  	console.log(team);
+
+	  	if (team == 1 ){
+	  		 totalA = totalA + 1
+	  	}else {
+	  		totalB = totalB + 1
+	  	}
+
+
+
+
+
+
 
 	  	//assign random number to player
 

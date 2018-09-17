@@ -24,20 +24,25 @@
   			<h3>Players</h3>
   			<ul class="playerList"></ul>
 
-        <h4>Total number of players</h4>
+        <h4>Enter total number of players</h4>
+        <p class="playersAmount">Players Amount</p>
         <form>
-          number of player: <input class="totalPlayers" id="" type="text" name="name">
+          <!-- number of players: <input class="totalPlayers" id="totalPlayers" type="text" name="name"> -->
           <input class="divid" id="" type="submit" value="Divide Team">
         </form>
+        <p>Number of players on each team <span class="playersPerTeam"></span></p>
   		</div>
   	</section>
+
   	<section>
   		<!-- Team A -->
-  		<article>
-  			<p>Team A</p>
+  		<article class="container--blue">
+  			<p>Team A <span class="totalAPlayers"></span></p>
+        <ul class="teamA"></ul>
   		</article>
-  		<article>
-  			<p>Team B</p>
+  		<article class="container--green">
+  			<p>Team B <span class="totalBPlayers"></span></p>
+        <ul class="teamB"></ul>
   		</article>
   	</section>
 
@@ -50,43 +55,92 @@
       let totalA = 0;
       let totalB = 0;
 
+      let players = 0;
+      let playersPerTeam = 0;
 
+      //assigning a random number to a player
+      function getRandom() {
+        return Math.floor(Math.random() * 2) + 1
+      }
+
+      //divid players into two teams
+
+      $('.divid').on('click', function(e){
+        e.preventDefault();
+
+        // var totalPlayers = $('#totalPlayers').val();
+        playersPerTeam = players / 2;
+
+        $('.playersPerTeam').html(playersPerTeam);
+
+      });
 
 			//user adding player names
 	  	$('#submit-button').on('click', function(e){
 	  		e.preventDefault();
 
+
+
 		  	var userInput = $('#userInput').val();
 		  	if( userInput === ""){
 		  		alert(`Input is empty`);
 		  	}else {
-		  		$('.playerList').append('<li>' + userInput + '</li>');
+          $('.playerList').append('<li>' + userInput + '</li>' );
+
+          //Running random function
+          var team = getRandom();
+          // console.log(team);
+
+          //if more than half of total number sent to the opposite team
+          if (totalA >= playersPerTeam){
+            console.log('too many');
+          }
+          //dividing into team
+          if (team == 1){
+            $('.teamA').append('<li>' + userInput + ' ' + team + '</li>' );
+
+            totalA = totalA +1
+            $('.totalAPlayers').html(totalA);
+
+          }else {
+            $('.teamB').append('<li>' + userInput + ' ' + team + '</li>' );
+
+            totalB = totalB + 1
+            $('.totalBPlayers').html(totalB);
+
+          }
+
+          //clearing input field
 	  			$('#userInput').val('')
+
+          //everytime a player name is added +1 on the totalPlayer Var
+          players = players + 1
+          $('.playersAmount').html(`Total number of players ${players}`);
+
 		  	}
 	  	});
 
-	  	//Assigning A B C
-	  	// get Random number
 
-	  	function getRandom() {
-	  	  return Math.floor(Math.random() * 2) + 1
-	  	}
 
-	  	var team = getRandom();
-	  	console.log(team);
 
-	  	// if (team == 1 ){
-	  	// 	 totalA = totalA + 1
-	  	// }else {
-	  	// 	totalB = totalB + 1
-	  	// }
+      // Assigning A B C
+      // get Random number
 
-      let totalPlayers = "0"
 
-      $('.divid').on('click', function(){
-        totalPlayers
 
-      });
+      // if (team == 1 ){
+      //   totalA = totalA + 1
+      // }else {
+      //  totalB = totalB + 1
+      // }
+
+
+
+
+
+
+
+
 
 
 

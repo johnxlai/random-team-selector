@@ -22,7 +22,8 @@
   			  <input id="submit-button" type="submit" value="Submit">
   			</form>
   			<h3>Players</h3>
-  			<ul class="playerList"></ul>
+  			<ul class="playerList">
+        </ul>
 
         <h4>Enter total number of players</h4>
         <p class="playersAmount">Players Amount</p>
@@ -58,22 +59,65 @@
       let players = 0;
       let playersPerTeam = 0;
 
+      let playersArray = [];
+
+
+
+
+
+      // $('button').on('click', function(e) {
+      //   e.preventDefault();
+
+      //   //getting number per group
+      //   var namespergroup = parseInt($('.pergroup').val()),
+      //     allnames = $('textarea').val().split('\n'),
+      //     allnameslen = allnames.length;
+
+      //   var numgroups = Math.ceil(allnameslen / namespergroup);
+
+      //   //getting number of groups
+      //   if($('.numgroups').val()){
+      //     numgroups = parseInt($('.numgroups').val());
+      //     namespergroup = allnameslen / numgroups;
+      //   }
+
+
+      //   $('.groups').empty();
+
+      //   //
+      //   for (i = 0; i < numgroups; i++) {
+      //     $('.groups').append('<div class="group" id="group' + (i+1) + '"><h2>Group ' + (i+1) + '</h2></div>');
+      //   }
+
+      //   $('.group').each(function() {
+      //     for (j = 0; j < namespergroup; j++) {
+      //       var randname = Math.floor(Math.random() * allnames.length);
+      //       if(allnames[randname]){
+      //         $(this).append('<p>' + allnames[randname] + '</p>');
+      //       }
+      //       allnames.splice(randname, 1);
+      //       console.log(allnames);
+      //     }
+      //   });
+      // });
+
+      // $('.toggle-wrap a').on('click', function(e){
+      //   e.preventDefault();
+      //   $('.wrap').toggleClass('alt');
+      //   $('.pergroup-wrap, .numgroups-wrap').find('input').val('');
+      // });
+
+
+
+
+
+
       //assigning a random number to a player
       function getRandom() {
         return Math.floor(Math.random() * 2) + 1
       }
 
-      //divid players into two teams
 
-      $('.divid').on('click', function(e){
-        e.preventDefault();
-
-        // var totalPlayers = $('#totalPlayers').val();
-        playersPerTeam = players / 2;
-
-        $('.playersPerTeam').html(playersPerTeam);
-
-      });
 
 			//user adding player names
 	  	$('#submit-button').on('click', function(e){
@@ -87,35 +131,86 @@
 		  	}else {
           $('.playerList').append('<li>' + userInput + '</li>' );
 
+          // Turn list into an array in order to calculate total amount in list item
+          playersArray.push(userInput);
+          console.log(playersArray);
+
+
+
+
+          //total amount of players
+          players = playersArray.length;
+          $('.playersAmount').html(`Total number of players ${players}`);
+
+
+          //divid players into two teams
+
+          $('.divid').on('click', function(e){
+            e.preventDefault();
+
+            // var totalPlayers = $('#totalPlayers').val();
+            playersPerTeam = players / 2;
+            $('.playersPerTeam').html(playersPerTeam);
+
+            //if more than half of total number sent to the opposite team
+
+
+          });
+
           //Running random function
           var team = getRandom();
           // console.log(team);
 
-          //if more than half of total number sent to the opposite team
-          if (totalA >= playersPerTeam){
-            console.log('too many');
-          }
+
           //dividing into team
-          if (team == 1){
-            $('.teamA').append('<li>' + userInput + ' ' + team + '</li>' );
+          // if (team == 1){
+          //   $('.teamA').append('<li>' + userInput + ' ' + team + '</li>' );
 
-            totalA = totalA +1
-            $('.totalAPlayers').html(totalA);
+          //   totalA = totalA +1
+          //   $('.totalAPlayers').html(totalA);
 
-          }else {
-            $('.teamB').append('<li>' + userInput + ' ' + team + '</li>' );
+          // }else {
+          //   $('.teamB').append('<li>' + userInput + ' ' + team + '</li>' );
 
-            totalB = totalB + 1
-            $('.totalBPlayers').html(totalB);
+          //   totalB = totalB + 1
+          //   $('.totalBPlayers').html(totalB);
 
-          }
+          // }
 
           //clearing input field
 	  			$('#userInput').val('')
 
-          //everytime a player name is added +1 on the totalPlayer Var
-          players = players + 1
-          $('.playersAmount').html(`Total number of players ${players}`);
+
+          //this is the loop
+          $(playersArray).each(function() {
+            // alert(this);
+
+            var randomTeam = Math.floor(Math.random() * 2);
+            // alert(this + randomTeam);
+            // console.log(this + randomTeam);
+            if (randomTeam == 0){
+              console.log(`${this} is on team a`);
+            }else {
+              console.log(`${this} is on team b`);
+            }
+
+            // if (this)
+            // for(i = 0; i < playersArray; i++){
+            //   var randomTeam = Math.floor(Math.random() * playersArray.length);
+            //   console.log(randomTeam);
+
+
+            // for (j = 0; j < namespergroup; j++) {
+            // var randname = Math.floor(Math.random() * allnames.length);
+            //   if(allnames[randname]){
+            //     $(this).append('<p>' + allnames[randname] + '</p>');
+            //   }
+            //   allnames.splice(randname, 1);
+            //     console.log(allnames);
+            //   }
+          });
+
+
 
 		  	}
 	  	});

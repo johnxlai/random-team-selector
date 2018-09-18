@@ -27,10 +27,7 @@
 
         <h4>Enter total number of players</h4>
         <p class="playersAmount">Players Amount</p>
-        <form>
-          <!-- number of players: <input class="totalPlayers" id="totalPlayers" type="text" name="name"> -->
-          <input class="divid" id="" type="submit" value="Divide Team">
-        </form>
+        <button class="divid">Divid Team</button>
         <p>Number of players on each team <span class="playersPerTeam"></span></p>
   		</div>
   	</section>
@@ -61,51 +58,48 @@
 
       let playersArray = [];
 
+      playersArray = ['john', 'marc', 'dave', 'dales'];
+
+      //total amount of players
+      players = playersArray.length;
+      $('.playersAmount').html(`Total number of players ${players}`);
+
+      // var totalPlayers = $('#totalPlayers').val();
+      playersPerTeam = players / 2;
+      $('.playersPerTeam').html(playersPerTeam);
 
 
 
+      $(playersArray).each(function() {
 
-      // $('button').on('click', function(e) {
-      //   e.preventDefault();
+        // alert(this + randomTeam);
+        // console.log(this + randomTeam);
 
-      //   //getting number per group
-      //   var namespergroup = parseInt($('.pergroup').val()),
-      //     allnames = $('textarea').val().split('\n'),
-      //     allnameslen = allnames.length;
+        //moving players to Team B if more than half is on Team A (however if team B is more it doesnt know what to do)
+        if (playersPerTeam > totalA ){
+          console.log('more than 2 A');
+          var randomTeam = Math.floor(Math.random() * 2);
 
-      //   var numgroups = Math.ceil(allnameslen / namespergroup);
+        }else {
+          randomTeam == 1;
+        }
 
-      //   //getting number of groups
-      //   if($('.numgroups').val()){
-      //     numgroups = parseInt($('.numgroups').val());
-      //     namespergroup = allnameslen / numgroups;
-      //   }
+          if (randomTeam == 0){
+            // console.log(`${this} is on team a`);
+              $('.teamA').append('<li>' + this +'</li>' );
+              totalA = totalA + 1;
+              // console.log(totalA);
 
 
-      //   $('.groups').empty();
+          }else {
+            // console.log(`${this} is on team b`);
+            $('.teamB').append('<li>' + this +'</li>' );
+              totalB = totalB + 1;
+              // console.log(totalB);
+          }
 
-      //   //
-      //   for (i = 0; i < numgroups; i++) {
-      //     $('.groups').append('<div class="group" id="group' + (i+1) + '"><h2>Group ' + (i+1) + '</h2></div>');
-      //   }
 
-      //   $('.group').each(function() {
-      //     for (j = 0; j < namespergroup; j++) {
-      //       var randname = Math.floor(Math.random() * allnames.length);
-      //       if(allnames[randname]){
-      //         $(this).append('<p>' + allnames[randname] + '</p>');
-      //       }
-      //       allnames.splice(randname, 1);
-      //       console.log(allnames);
-      //     }
-      //   });
-      // });
 
-      // $('.toggle-wrap a').on('click', function(e){
-      //   e.preventDefault();
-      //   $('.wrap').toggleClass('alt');
-      //   $('.pergroup-wrap, .numgroups-wrap').find('input').val('');
-      // });
 
 
 
@@ -113,17 +107,14 @@
 
 
       //assigning a random number to a player
-      function getRandom() {
-        return Math.floor(Math.random() * 2) + 1
-      }
-
+      // function getRandom() {
+      //   return Math.floor(Math.random() * 2) + 1
+      // }
 
 
 			//user adding player names
 	  	$('#submit-button').on('click', function(e){
 	  		e.preventDefault();
-
-
 
 		  	var userInput = $('#userInput').val();
 		  	if( userInput === ""){
@@ -138,27 +129,17 @@
 
 
 
-          //total amount of players
-          players = playersArray.length;
-          $('.playersAmount').html(`Total number of players ${players}`);
-
-
           //divid players into two teams
 
           $('.divid').on('click', function(e){
             e.preventDefault();
 
-            // var totalPlayers = $('#totalPlayers').val();
-            playersPerTeam = players / 2;
-            $('.playersPerTeam').html(playersPerTeam);
-
-            //if more than half of total number sent to the opposite team
 
 
           });
 
           //Running random function
-          var team = getRandom();
+          // var team = getRandom();
           // console.log(team);
 
 
@@ -180,39 +161,25 @@
           //clearing input field
 	  			$('#userInput').val('')
 
-
-          //this is the loop
-          $(playersArray).each(function() {
-            // alert(this);
-
-            var randomTeam = Math.floor(Math.random() * 2);
-            // alert(this + randomTeam);
-            // console.log(this + randomTeam);
-            if (randomTeam == 0){
-              console.log(`${this} is on team a`);
-            }else {
-              console.log(`${this} is on team b`);
-            }
-
-            // if (this)
-            // for(i = 0; i < playersArray; i++){
-            //   var randomTeam = Math.floor(Math.random() * playersArray.length);
-            //   console.log(randomTeam);
-
-
-            // for (j = 0; j < namespergroup; j++) {
-            // var randname = Math.floor(Math.random() * allnames.length);
-            //   if(allnames[randname]){
-            //     $(this).append('<p>' + allnames[randname] + '</p>');
-            //   }
-            //   allnames.splice(randname, 1);
-            //     console.log(allnames);
-            //   }
-          });
-
-
-
 		  	}
+
+
+
+          // if (this)
+          // for(i = 0; i < playersArray; i++){
+          //   var randomTeam = Math.floor(Math.random() * playersArray.length);
+          //   console.log(randomTeam);
+
+
+          // for (j = 0; j < namespergroup; j++) {
+          // var randname = Math.floor(Math.random() * allnames.length);
+          //   if(allnames[randname]){
+          //     $(this).append('<p>' + allnames[randname] + '</p>');
+          //   }
+          //   allnames.splice(randname, 1);
+          //     console.log(allnames);
+          //   }
+        });
 	  	});
 
 

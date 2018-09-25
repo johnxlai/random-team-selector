@@ -54,7 +54,7 @@
       let totalB = 0;
 
       let players = 0;
-      let playersPerTeam = 0;
+      let playersPerTeam = 0
 
       let playersArray = [];
 
@@ -68,48 +68,55 @@
       playersPerTeam = players / 2;
       $('.playersPerTeam').html(playersPerTeam);
 
+      // console.log(playersArray);
+
+
+
+
+
+
+
+
+
 
 
       $(playersArray).each(function() {
 
-        // alert(this + randomTeam);
-        // console.log(this + randomTeam);
+        if (playersPerTeam > totalA  && playersPerTeam < totalB ){
+          //send players to B
+          randomTeam == 1;
 
-        //moving players to Team B if more than half is on Team A (however if team B is more it doesnt know what to do)
-        if (playersPerTeam > totalA ){
-          console.log('more than 2 A');
+        }else if (playersPerTeam > totalB  && playersPerTeam < totalA ){
+          //send player to A
+          randomTeam == 0;
+          // randomTeam == 0;
+        } else {
           var randomTeam = Math.floor(Math.random() * 2);
 
-        }else {
-          randomTeam == 1;
         }
 
-          if (randomTeam == 0){
-            // console.log(`${this} is on team a`);
-              $('.teamA').append('<li>' + this +'</li>' );
-              totalA = totalA + 1;
-              // console.log(totalA);
 
+        if (randomTeam == 0){
+        // console.log(`${this} is on team a`);
+          $('.teamA').append('<li>' + this +'</li>' );
+            totalA = totalA + 1;
 
-          }else {
-            // console.log(`${this} is on team b`);
-            $('.teamB').append('<li>' + this +'</li>' );
+        }else {
+          // console.log(`${this} is on team b`);
+          $('.teamB').append('<li>' + this +'</li>' );
               totalB = totalB + 1;
-              // console.log(totalB);
-          }
+        }
+
+
+      });
 
 
 
 
+      console.log(`${totalA} total a`);
+      console.log(`${totalB} total B`);
 
 
-
-
-
-      //assigning a random number to a player
-      // function getRandom() {
-      //   return Math.floor(Math.random() * 2) + 1
-      // }
 
 
 			//user adding player names
@@ -126,102 +133,25 @@
           playersArray.push(userInput);
           console.log(playersArray);
 
-
-
-
           //divid players into two teams
 
           $('.divid').on('click', function(e){
             e.preventDefault();
-
-
-
           });
-
-          //Running random function
-          // var team = getRandom();
-          // console.log(team);
-
-
-          //dividing into team
-          // if (team == 1){
-          //   $('.teamA').append('<li>' + userInput + ' ' + team + '</li>' );
-
-          //   totalA = totalA +1
-          //   $('.totalAPlayers').html(totalA);
-
-          // }else {
-          //   $('.teamB').append('<li>' + userInput + ' ' + team + '</li>' );
-
-          //   totalB = totalB + 1
-          //   $('.totalBPlayers').html(totalB);
-
-          // }
 
           //clearing input field
 	  			$('#userInput').val('')
-
 		  	}
 
-
-
-          // if (this)
-          // for(i = 0; i < playersArray; i++){
-          //   var randomTeam = Math.floor(Math.random() * playersArray.length);
-          //   console.log(randomTeam);
-
-
-          // for (j = 0; j < namespergroup; j++) {
-          // var randname = Math.floor(Math.random() * allnames.length);
-          //   if(allnames[randname]){
-          //     $(this).append('<p>' + allnames[randname] + '</p>');
-          //   }
-          //   allnames.splice(randname, 1);
-          //     console.log(allnames);
-          //   }
-        });
-	  	});
-
-
-
-
-      // Assigning A B C
-      // get Random number
-
-
-
-      // if (team == 1 ){
-      //   totalA = totalA + 1
-      // }else {
-      //  totalB = totalB + 1
-      // }
+      });
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-	  	//assign random number to player
-
-	  	//player gets 1 go to team A
 		});
 
-
-
-  	// Random Team Selector
-
-  	// Enter Player Name
-  	// Each player either goes to Team A  or Team B
-  	// if team A is equal more than half or the total number than send players to team B
 
 
   </script>

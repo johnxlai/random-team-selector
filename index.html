@@ -40,14 +40,22 @@
   	<section>
       <div class="display--flex">
     		<!-- Team A -->
-    		<article class="container--blue l-column--medium-6 align--center">
+    		<article class="container--blue l-column--medium-6 align--center soft white">
     			<p>Team A <span class="totalAPlayers"></span></p>
           <ul class="teamA"></ul>
     		</article>
-    		<article class="container--green l-column--medium-6 align--center">
+    		<article class="container--green l-column--medium-6 align--center soft white">
     			<p>Team B <span class="totalBPlayers"></span></p>
           <ul class="teamB"></ul>
     		</article>
+        <article class="container--teal l-column--medium-6 align--center soft white">
+          <p>Team C <span class="totalCPlayers"></span></p>
+          <ul class="teamC"></ul>
+        </article>
+        <article class="container--pink l-column--medium-6 align--center soft white">
+          <p>Team D <span class="totalDPlayers"></span></p>
+          <ul class="teamD"></ul>
+        </article>
       </div>
   	</section>
 
@@ -59,6 +67,8 @@
     $(document).ready(function(){
       let totalA = 0;
       let totalB = 0;
+      let totalC = 0;
+      let totalD = 0;
 
       let playersArray = [];
 

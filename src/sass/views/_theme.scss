@@ -3,13 +3,55 @@
  */
 
 .container--green {
-	background: #48d45b;
+	background: #ff3366;
 	padding: 22px;
 	color: white;
 }
 
 .container--blue {
-	background: #0190fe;
+	background: #577399;
 	padding: 22px;
 	color: white;
+}
+
+.container--black {
+	background: black;
+}
+
+.container--light-grey {
+	background: #f7f7ff;
+}
+
+.container--light-blue {
+	background: #bdd5ea;
+}
+
+.white {
+	color: white;
+}
+
+h1 {
+	margin: 0;
+}
+
+.push-half--bottom {
+	margin-bottom: 11px;
+}
+
+.align--center {
+	text-align: center;
+}
+
+ul.playerList {
+	list-style: none;
+	padding-left: 0;
+}
+
+button.divid {
+	background: #495867;
+}
+
+.display--flex {
+	display: flex;
+	flex-wrap: wrap;
 }

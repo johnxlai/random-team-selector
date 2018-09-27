@@ -3,45 +3,50 @@
 <head>
   <script>document.documentElement.className=document.documentElement.className.replace("no-js","yes-js");window.G={D:{_qj:[]}};G.Q=function(k){G.D._qj.push(k)};</script>
   <meta charset="UTF-8">
-  <title>Random Team Selector</title>
+  <title>Random Team Generator</title>
 
   <link rel="stylesheet" href="dist/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
 </head>
 <body>
   <header>
-  		<h1>Team Selector</h1>
-  	</header>
+    <div class="container--black white align--center soft">
+  		<h1 class="">Team Generator</h1>
+    </div>
+  </header>
 
-  	<section>
+  	<section class="align--center container--light-grey">
   		<!-- Add name here -->
-  		<div class="full container--black">
-  			<h2>add name here</h2>
+  		<div class="full soft-half">
+
   			<form>
-  			  Name: <input id="userInput" type="text" name="name">
+  			  Enter Player Name: <input id="userInput" type="text" name="name">
   			  <input id="submit-button" type="submit" value="Submit">
   			</form>
-  			<h3>Players</h3>
-  			<ul class="playerList">
+
+        <ul class="playerList">
         </ul>
 
-        <h4>Enter total number of players</h4>
-        <p class="playersAmount">Players Amount</p>
-        <button class="divid">Divid Team</button>
-        <p>Number of players on each team <span class="playersPerTeam"></span></p>
+        <h4 class="playersAmount flush--bottom">Total Number of Players</h4>
+        <p class="push-half--top">Number of players on each team <span class="playersPerTeam"></span></p>
+        <button class="divid white caps"><p>Divid Teams</p></button>
   		</div>
   	</section>
 
   	<section>
-  		<!-- Team A -->
-  		<article class="container--blue">
-  			<p>Team A <span class="totalAPlayers"></span></p>
-        <ul class="teamA"></ul>
-  		</article>
-  		<article class="container--green">
-  			<p>Team B <span class="totalBPlayers"></span></p>
-        <ul class="teamB"></ul>
-  		</article>
+      <div class="display--flex">
+    		<!-- Team A -->
+    		<article class="container--blue l-column--medium-6">
+    			<p>Team A <span class="totalAPlayers"></span></p>
+          <ul class="teamA"></ul>
+    		</article>
+    		<article class="container--green l-column--medium-6">
+    			<p>Team B <span class="totalBPlayers"></span></p>
+          <ul class="teamB"></ul>
+    		</article>
+      </div>
   	</section>
 
 
@@ -93,6 +98,10 @@
 
       $('.divid').on('click', function(e){
         e.preventDefault();
+        // $('.teamA').html('');
+        // $('.teamB').html('');
+        console.log('remove');
+
 
         $(playersArray).each(function() {
 

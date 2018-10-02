@@ -31,13 +31,10 @@
 
         <h4 class="playersAmount flush--bottom">Total Teams</h4>
         <select class="amountOfTeams" >
-          <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-
-
 
         <h4 class="playersAmount flush--bottom">Total Number of Players</h4>
         <p class="push-half--top">Number of players on each team <span class="playersPerTeam"></span></p>
@@ -50,19 +47,22 @@
   	<section>
       <div class="display--flex">
     		<!-- Team A -->
-    		<article class="container--blue l-column--medium-6 align--center soft white">
+    		<article class="container--blue l-column--medium-6 align--center soft white teams">
     			<p>Team A <span class="totalAPlayers"></span></p>
           <ul class="teamA"></ul>
     		</article>
-    		<article class="container--green l-column--medium-6 align--center soft white">
+
+    		<article class="team2 container--green l-column--medium-6 align--center soft white teams">
     			<p>Team B <span class="totalBPlayers"></span></p>
           <ul class="teamB"></ul>
     		</article>
-        <article class="container--teal l-column--medium-6 align--center soft white">
+
+        <article class="team3 container--teal l-column--medium-6 align--center soft white teams hide">
           <p>Team C <span class="totalCPlayers"></span></p>
           <ul class="teamC"></ul>
         </article>
-        <article class="container--pink l-column--medium-6 align--center soft white">
+
+        <article class="team4 container--pink l-column--medium-6 align--center soft white teams hide">
           <p>Team D <span class="totalDPlayers"></span></p>
           <ul class="teamD"></ul>
         </article>
@@ -83,22 +83,7 @@
 
       let playersArray = [];
 
-      $('.amountOfTeams').on('change', function() {
-        amountOfTeams = $('.amountOfTeams').val();
-        console.log(amountOfTeams);
-      });
-
-
-      // console.log(amountOfTeams);
-
-
-
-      // playersArray = ['john', 'marc', 'dave', 'dales'];
-
-
-
-      // console.log(playersArray);
-
+      playersArray = ['john', 'marc', 'dave', 'dales'];
 
       // user adding player names
       $('#submit-button').on('click', function(e){
@@ -128,6 +113,29 @@
 
       });
 
+
+
+      // amount of players
+      $('.amountOfTeams').on('change', function() {
+        amountOfTeams = $('.amountOfTeams').val();
+        $('.teams').removeClass('show');
+
+        // if user select 3 or 4 show
+        if (amountOfTeams == 2){
+          $('.team2').addClass('show');
+          //show 1 and 2
+        } else if (amountOfTeams == 3 ){
+          $('.team2, .team3').addClass('show');
+          // show 3
+        } else{
+          // show all
+          $('.team2, .team3, .team4').addClass('show');
+        }
+
+      });
+
+
+
       //divid players into two teams
 
       $('.divid').on('click', function(e){
@@ -138,10 +146,10 @@
         totalB = 0;
         totalC = 0;
         totalD = 0;
-        $('.teamA').empty();
-        $('.teamB').empty();
-        $('.teamC').empty();
-        $('.teamD').empty()
+        $('.teamA, .teamB, .teamC, .teamD').empty();
+        // $('.teamB').empty();
+        // $('.teamC').empty();
+        // $('.teamD').empty()
 
 
 

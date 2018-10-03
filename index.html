@@ -82,8 +82,9 @@
       let amountOfTeams = 0;
 
       let playersArray = [];
+      let playersPerTeam = 0;
 
-      playersArray = ['john', 'marc', 'dave', 'dales'];
+      playersArray = ['john', 'marc', 'dave', 'dales', 'jeff', 'bb', 'coby', 'fish'];
 
       // user adding player names
       $('#submit-button').on('click', function(e){
@@ -152,53 +153,32 @@
         // $('.teamD').empty()
 
 
-
         $(playersArray).each(function() {
 
-          // if the teams are uneven
-          if(totalA !== totalB) {
+          playersPerTeam = 2;
+          console.log(playersPerTeam);
 
 
-            // if (totalA < totalB){
-
-            //   $('.teamA').append('<li>' + this +'</li>' );
-            //     totalA = totalA + 1;
-
-            // } else if (totalB < totalA){
-            //   // otherwise add a player to teamB
-            //   $('.teamB').append('<li>' + this +'</li>' );
-            //       totalB = totalB + 1;
-            // } else if (totalC < totalD) {
-            //   // otherwise add a player to teamB
-            //   $('.teamB').append('<li>' + this +'</li>' );
-            //       totalC = totalC + 1;
-            // } else{
-            //   // otherwise add a player to teamB
-            //   $('.teamB').append('<li>' + this +'</li>' );
-            //       totalD = totalD + 1;
-            // }
-
-
-            //add a member to the smaller team
-            if (totalA < totalB){
-
+        //if players per team of players is more than totalA send player to totalB send totalC and send total D
+          if (playersPerTeam > totalA) {
+              //add player to totalA
               $('.teamA').append('<li>' + this +'</li>' );
                 totalA = totalA + 1;
 
-            } else if (totalB < totalA){
-              // otherwise add a player to teamB
-              $('.teamB').append('<li>' + this +'</li>' );
-                  totalB = totalB + 1;
-            } else if (totalC < totalD) {
-              // otherwise add a player to teamB
-              $('.teamB').append('<li>' + this +'</li>' );
-                  totalC = totalC + 1;
-            } else{
-              // otherwise add a player to teamB
-              $('.teamB').append('<li>' + this +'</li>' );
-                  totalD = totalD + 1;
-            }
+          } else if (playersPerTeam > totalB) {
+            //add player to tatal B
+            $('.teamB').append('<li>' + this +'</li>' );
+                totalB = totalB + 1;
 
+          } else if (playersPerTeam > totalC) {
+            //add player to total C
+            $('.teamC').append('<li>' + this +'</li>' );
+                totalC = totalC + 1;
+
+          }else if (playersPerTeam > totalD){
+            //add player to total D
+            $('.teamD').append('<li>' + this +'</li>' );
+                totalD = totalD + 1;
           }else {
             //add a member to a random team
             var randomTeam = Math.floor(Math.random() * 4);
@@ -221,7 +201,59 @@
               $('.teamD').append('<li>' + this +'</li>' );
                   totalD = totalD + 1;
             }
+
           }
+
+
+        //else run the random thing
+
+
+          // if the teams are uneven
+          // if(totalA !== totalB ) {
+
+          //   //add a member to the smaller team
+          //   if (totalA < totalB){
+
+          //     $('.teamA').append('<li>' + this +'</li>' );
+          //       totalA = totalA + 1;
+
+          //   } else if (totalB < totalA){
+          //     // otherwise add a player to teamB
+          //     $('.teamB').append('<li>' + this +'</li>' );
+          //         totalB = totalB + 1;
+          //   } else if (totalC < totalD) {
+          //     // otherwise add a player to teamB
+          //     $('.teamB').append('<li>' + this +'</li>' );
+          //         totalC = totalC + 1;
+          //   } else{
+          //     // otherwise add a player to teamB
+          //     $('.teamB').append('<li>' + this +'</li>' );
+          //         totalD = totalD + 1;
+          //   }
+
+          // }else {
+          //   //add a member to a random team
+          //   var randomTeam = Math.floor(Math.random() * 4);
+
+          //   if (randomTeam == 0){
+          //   // console.log(`${this} is on team a`);
+          //     $('.teamA').append('<li>' + this +'</li>' );
+          //       totalA = totalA + 1;
+
+          //   }else if (randomTeam == 1) {
+          //     // console.log(`${this} is on team b`);
+          //     $('.teamB').append('<li>' + this +'</li>' );
+          //         totalB = totalB + 1;
+          //   }else if (randomTeam == 2) {
+          //     // console.log(`${this} is on team b`);
+          //     $('.teamC').append('<li>' + this +'</li>' );
+          //         totalC = totalC + 1;
+          //   }else {
+          //     // console.log(`${this} is on team b`);
+          //     $('.teamD').append('<li>' + this +'</li>' );
+          //         totalD = totalD + 1;
+          //   }
+          // }
 
           console.log(`${totalA} total A and ${totalB} total B, ${totalC} total C and ${totalD} total D`);
 

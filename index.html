@@ -81,13 +81,11 @@
       let totalB = 0;
       let totalC = 0;
       let totalD = 0;
-      let amountOfTeams = 0;
+      //set 2 by default
+      let amountOfTeams = 2;
 
       let playersArray = [];
       let playersPerTeam = 0;
-
-
-
 
 
 
@@ -99,16 +97,19 @@
         totalB = 0;
         totalC = 0;
         totalD = 0;
-        $('.teamA').empty();
-        $('.teamB').empty();
+        $('.teamA, .teamB, .teamC, .teamD').empty();
         $('.playerList').empty();
 
         totalPlayers = 0;
         playersArray = [];
 
 
-        playersArray = ['john', 'marc', 'dave', 'dales', 'jeff', 'bb', 'coby', 'fish'];
-        playersPerTeam = playersArray.length / 2 ;
+        playersArray = ['john', 'marc', 'dave', 'dales', 'jeff', 'bb', 'coby', 'fish', 'arley'];
+        //using players array.length to calc and divid by number of teams
+        //rounding up player incase of 2.6
+        playersPerTeam = Math.round(playersArray.length / amountOfTeams );
+        console.log(playersPerTeam);
+
 
 
         //random shovel
@@ -148,11 +149,14 @@
 
         // Split in group of 3 items
         var result = chunkArray(playersArray, playersPerTeam);
+        console.log(result);
+
 
         var team1 = result[0];
         var team2 = result[1];
-        console.log(team1);
-        console.log(team2);
+        var team3 = result[2];
+        var team4 = result[3];
+        console.log(team1 , team2, team3, team4);
 
 
 
@@ -163,17 +167,33 @@
         $(team2).each(function(){
           $('.teamB').append('<li>' +  this +'</li>' );
         });
+        $(team3).each(function(){
+          $('.teamC').append('<li>' +  this +'</li>' );
+        });
+        $(team4).each(function(){
+          $('.teamD').append('<li>' +  this +'</li>' );
+        });
 
 
       });
 
+      // function chunkArray(myArray, chunk_size){
+      //     var index = 0;
+      //     var arrayLength = myArray.length;
+      //     var tempArray = [];
 
+      //     for (index = 0; index < arrayLength; index += chunk_size) {
+      //         myChunk = myArray.slice(index, index+chunk_size);
+      //         // Do something if you want with the group
+      //         tempArray.push(myChunk);
+      //     }
 
-
-
-
-
-
+      //     return tempArray;
+      // }
+      // // Split in group of 3 items
+      // var result = chunkArray([1,2,3,4,5,6,7,8], 3);
+      // // Outputs : [ [1,2,3] , [4,5,6] ,[7,8] ]
+      // console.log(result);
 
 
       // user adding player names
@@ -206,7 +226,7 @@
 
 
 
-      // amount of players
+      // setting amount of players
       $('.amountOfTeams').on('change', function() {
         amountOfTeams = $('.amountOfTeams').val();
         $('.teams').removeClass('show');

@@ -104,15 +104,18 @@
         playersArray = [];
 
 
-        playersArray = ['john', 'marc', 'dave', 'dales', 'jeff', 'bb', 'coby', 'fish'];
+
+        //old
+        playersArray = ['john', 'marc', 'dave', 'dales', 'jeff', 'bb', 'coby', 'fish','fat'];
         //using players array.length to calc and divid by number of teams
         //rounding up player incase of 2.6
-        playersPerTeam = Math.round(playersArray.length / amountOfTeams );
-        console.log(playersPerTeam);
+        // playersPerTeam = Math.ceil(playersArray.length / amountOfTeams );
+        // console.log(playersPerTeam);
 
 
 
-        //random shovel
+
+        // random shovel
         function shuffle(array) {
           var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -132,24 +135,64 @@
           return array;
         }
 
-        // Used like so
+
+        // // Used like so
           playersArray = shuffle(playersArray);
           console.log(playersArray);
 
 
-        function chunkArray(playersArray, playersPerTeam) {
-            let results = [];
 
-            while (playersArray.length) {
-                results.push(playersArray.splice(0, playersPerTeam))
+
+        //new function
+        function splitArray(array, teams){
+            var leftOver = array.length % teams; // remainder
+            restUsed = leftOver, // to keep track of the division over the elements
+            playersPerTeam = Math.floor(array.length / teams),
+            result = [];
+
+            for(var i = 0; i < array.length; i+= playersPerTeam) {
+              var end = playersPerTeam + i;
+                  add = false;
+
+              if(leftOver !== 0 && restUsed){ // should add one element for the division
+                end++;
+                restUsed--; // we've used one division element now
+                add = true;
+              }
+
+              result.push(array.slice(i, end)); // part of the array
+
+              if(add) {
+                i++;  // also increment i in the case we added an extra element for division
+              }
+
             }
+            return result;
 
-            return results;
+
         }
+        splitArray(playersArray, amountOfTeams);
+
+
+
+        var result = splitArray(playersArray, amountOfTeams);
+        console.log(result);
+
+
+        //old function
+        // function chunkArray(playersArray, playersPerTeam) {
+        //     let results = [];
+
+        //     while (playersArray.length) {
+        //         results.push(playersArray.splice(0, playersPerTeam))
+        //     }
+
+        //     return results;
+        // }
 
         // Split in group of 3 items
-        var result = chunkArray(playersArray, playersPerTeam);
-        console.log(result);
+        // var result = chunkify(playersArray, playersPerTeam);
+        // console.log(result);
 
 
         var team1 = result[0];

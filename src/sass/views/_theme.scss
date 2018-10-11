@@ -59,9 +59,14 @@ h1 {
 ul {
 	list-style: none;
 	padding-left: 0;
+
+	li {
+		display: inline-block;
+		margin: 5px;
+	}
 }
 
-button.divid {
+button.divide {
 	background: #495867;
 }
 
@@ -81,4 +86,13 @@ button.reset {
 
 .show {
 	display: block !important;
+}
+
+.container {
+	width: 60%;
+	margin: 11px auto;
+}
+
+.rule--all {
+	border: 1px solid darkgrey;
 }

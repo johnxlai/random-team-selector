@@ -10,9 +10,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
 </head>
-<body>
+<body class="container--black">
   <header>
-    <div class="container--black white align--center soft">
+    <div class=" white align--center soft">
   		<h1 class="">Team Generator</h1>
     </div>
   </header>
@@ -26,19 +26,24 @@
   			  <input id="submit-button" type="submit" value="Submit">
   			</form>
 
-        <ul class="playerList">
-        </ul>
 
-        <h4 class="playersAmount flush--bottom">Total Teams</h4>
+        <div class="container rule--all">
+          <ul class="playerList">
+          </ul>
+        </div>
+
+        <h4 class="flush--bottom">Total Teams</h4>
         <select class="amountOfTeams" >
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
 
+
+
         <h4 class="playersAmount flush--bottom">Total Number of Players</h4>
         <p class="push-half--top">Number of players on each team <span class="playersPerTeam"></span></p>
-        <button class="divid caps white"><p>Divid Teams</p></button>
+        <button class="divide caps white"><p>Divide Teams</p></button>
 
         <button class="reset caps white"><p>Reset</p></button>
   		</div>
@@ -68,7 +73,6 @@
         </article>
       </div>
 
-      <button class="shuffle">shuffle</button>
   	</section>
 
 
@@ -87,33 +91,39 @@
       let playersArray = [];
       let playersPerTeam = 0;
 
+      // user adding player names
+      $('#submit-button').on('click', function(e){
+        e.preventDefault();
+
+        var userInput = $('#userInput').val();
+        if( userInput === ""){
+          alert(`Input is empty`);
+        }else {
+          $('.playerList').append('<li>' + userInput + '</li>' );
+
+          // Turn list into an array in order to calculate total amount in list item
+           playersArray.push(userInput);
+          // console.log(playersArray);
+
+          //clearing input field
+          $('#userInput').val('')
+        }
+
+        //total amount of players
+        players = playersArray.length;
+        $('.playersAmount').html(`Total number of players ${players}`);
+
+        // var totalPlayers = $('#totalPlayers').val();
+        // playersPerTeam = players / amountOfTeams;
+        // $('.playersPerTeam').html(playersPerTeam);
+      });
 
 
-      $('.divid').on('click', function(e){
+      $('.divide').on('click', function(e){
         e.preventDefault();
 
         $('#userInput').val('')
-        totalA = 0;
-        totalB = 0;
-        totalC = 0;
-        totalD = 0;
         $('.teamA, .teamB, .teamC, .teamD').empty();
-        $('.playerList').empty();
-
-        totalPlayers = 0;
-        playersArray = [];
-
-
-
-        //old
-        playersArray = ['john', 'marc', 'dave', 'dales', 'jeff', 'bb', 'coby', 'fish','fat'];
-        //using players array.length to calc and divid by number of teams
-        //rounding up player incase of 2.6
-        // playersPerTeam = Math.ceil(playersArray.length / amountOfTeams );
-        // console.log(playersPerTeam);
-
-
-
 
         // random shovel
         function shuffle(array) {
@@ -136,15 +146,13 @@
         }
 
 
-        // // Used like so
+        // // shuffle players
           playersArray = shuffle(playersArray);
-          console.log(playersArray);
 
 
-
-
-        //new function
+        //new function for team split
         function splitArray(array, teams){
+
             var leftOver = array.length % teams; // remainder
             restUsed = leftOver, // to keep track of the division over the elements
             playersPerTeam = Math.floor(array.length / teams),
@@ -173,27 +181,7 @@
         }
         splitArray(playersArray, amountOfTeams);
 
-
-
         var result = splitArray(playersArray, amountOfTeams);
-        console.log(result);
-
-
-        //old function
-        // function chunkArray(playersArray, playersPerTeam) {
-        //     let results = [];
-
-        //     while (playersArray.length) {
-        //         results.push(playersArray.splice(0, playersPerTeam))
-        //     }
-
-        //     return results;
-        // }
-
-        // Split in group of 3 items
-        // var result = chunkify(playersArray, playersPerTeam);
-        // console.log(result);
-
 
         var team1 = result[0];
         var team2 = result[1];
@@ -217,56 +205,7 @@
           $('.teamD').append('<li>' +  this +'</li>' );
         });
 
-
       });
-
-      // function chunkArray(myArray, chunk_size){
-      //     var index = 0;
-      //     var arrayLength = myArray.length;
-      //     var tempArray = [];
-
-      //     for (index = 0; index < arrayLength; index += chunk_size) {
-      //         myChunk = myArray.slice(index, index+chunk_size);
-      //         // Do something if you want with the group
-      //         tempArray.push(myChunk);
-      //     }
-
-      //     return tempArray;
-      // }
-      // // Split in group of 3 items
-      // var result = chunkArray([1,2,3,4,5,6,7,8], 3);
-      // // Outputs : [ [1,2,3] , [4,5,6] ,[7,8] ]
-      // console.log(result);
-
-
-      // user adding player names
-      $('#submit-button').on('click', function(e){
-        e.preventDefault();
-
-        var userInput = $('#userInput').val();
-        if( userInput === ""){
-          alert(`Input is empty`);
-        }else {
-          $('.playerList').append('<li>' + userInput + '</li>' );
-
-          // Turn list into an array in order to calculate total amount in list item
-          playersArray.push(userInput);
-          console.log(playersArray);
-
-          //clearing input field
-          $('#userInput').val('')
-        }
-
-        //total amount of players
-        players = playersArray.length;
-        $('.playersAmount').html(`Total number of players ${players}`);
-
-        var totalPlayers = $('#totalPlayers').val();
-        playersPerTeam = players / amountOfTeams;
-        $('.playersPerTeam').html(playersPerTeam);
-
-      });
-
 
 
       // setting amount of players
@@ -288,14 +227,40 @@
 
       });
 
+      $('.reset').on('click',function(e){
+
+        e.preventDefault();
+        $('#userInput').val('');
+        $('.teamA, .teamB, .teamC, .teamD, .playerList').empty();
+
+        totalPlayers = 0;
+        playersArray = [];
+      });
 
 
-      //divid players into two teams
+      //old function - approach two
+      // function chunkArray(playersArray, playersPerTeam) {
+      //     let results = [];
 
-      // $('.divid').on('click', function(e){
+      //     while (playersArray.length) {
+      //         results.push(playersArray.splice(0, playersPerTeam))
+      //     }
+
+      //     return results;
+      // }
+
+      // Split in group of 3 items
+      // var result = chunkify(playersArray, playersPerTeam);
+      // console.log(result);
+
+
+
+      //divide players into two teams
+
+      // $('.divide').on('click', function(e){
       //   e.preventDefault();
 
-      //   //clearing the loop every time divid team is clicked
+      //   //clearing the loop every time divide team is clicked
       //   totalA = 0;
       //   totalB = 0;
       //   totalC = 0;
@@ -310,18 +275,7 @@
       //   var teamInLoopNow = '';
 
 
-
-
-      //     // var smallestTeam
-      //     // for each team {
-      //     //   if smallestTeam < teamInLoopNow, then smallestTeam = teamInLoopNow
-      //     // }
-      //     // log smallestTeam to the console
-
-      //     // the smallestTeam is the one you want to add a player to, right?
-
-
-
+      //approach one
       //   // $(playersArray).each(function() {
       //   //   // if the teams are uneven
       //   //   if(totalA !== totalB ) {
@@ -376,21 +330,6 @@
       // });
 
 
-      $('.reset').on('click',function(e){
-
-        e.preventDefault();
-        $('#userInput').val('')
-        totalA = 0;
-        totalB = 0;
-        totalC = 0;
-        totalD = 0;
-        $('.teamA').empty();
-        $('.teamB').empty();
-        $('.playerList').empty();
-
-        totalPlayers = 0;
-        playersArray = [];
-      });
 
 
 

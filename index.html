@@ -119,6 +119,17 @@
       });
 
 
+      // setting amount of players
+      $('.amountOfTeams').on('change', function() {
+        amountOfTeams = $('.amountOfTeams').val();
+
+
+      });
+
+
+
+
+
       $('.divide').on('click', function(e){
         e.preventDefault();
 
@@ -205,12 +216,6 @@
           $('.teamD').append('<li>' +  this +'</li>' );
         });
 
-      });
-
-
-      // setting amount of players
-      $('.amountOfTeams').on('change', function() {
-        amountOfTeams = $('.amountOfTeams').val();
         $('.teams').removeClass('show');
 
         // if user select 3 or 4 show
@@ -226,6 +231,9 @@
         }
 
       });
+
+
+
 
       $('.reset').on('click',function(e){
 

@@ -1,7 +1,6 @@
 
-# Cardhouse
+# Random Team Selector
 
-A simple personal project boilerplate I use for personal apps, prototypes, and starting projects. Uses Scss, jQuery, Gulp.
 
 ## Setup
 

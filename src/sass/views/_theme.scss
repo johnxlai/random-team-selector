@@ -66,13 +66,78 @@ ul {
 	}
 }
 
+/// button style reset/**
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+
+	/* 1 */
+	font-size: 100%;
+
+	/* 1 */
+	line-height: 1.15;
+
+	/* 1 */
+	margin: 0;
+
+	/* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+	/* 1 */
+	overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+	/* 1 */
+	text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+}
+
 button.divide {
 	background: #495867;
+	color: white;
+	border: inherit;
 }
 
 button.reset {
 	background: red;
 	color: white;
+	border: 0;
+}
+
+.submit {
+	background: green;
+	border: 0;
+	padding: 3px;
+	color: white;
+	margin-top: 11px;
 }
 
 .display--flex {

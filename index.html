@@ -21,10 +21,16 @@
   		<!-- Add name here -->
   		<div class="full soft-half">
 
-  			<form>
+  			<!-- <form>
   			  Enter Player Name: <input id="userInput" type="text" name="name">
   			  <input id="submit-button" type="submit" value="Submit" class="submit">
-  			</form>
+  			</form> -->
+
+        <form>
+          <p class="align--center">Enter Player Name:</p>
+          <textarea id="userInput" type="text" name="name"></textarea>
+          <input id="submit-button" type="submit" value="Submit" class="submit">
+        </form>
 
 
         <div class="container rule--all">
@@ -122,10 +128,14 @@
       // setting amount of players
       $('.amountOfTeams').on('change', function() {
         amountOfTeams = $('.amountOfTeams').val();
-
-
       });
 
+
+      //removing dudes
+      // $('ul.playerList li').on('click', function(){
+      //     $(this).remove();
+      //     console.log(this);
+      // })
 
 
 

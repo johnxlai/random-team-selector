@@ -28,7 +28,7 @@
 
         <form>
           <p class="align--center">Enter Player Name:</p>
-          <textarea id="userInput" type="text" name="name"></textarea>
+          <textarea id="userInput" type="text" name="name" rows="4" cols="50"></textarea>
           <input id="submit-button" type="submit" value="Submit" class="submit">
         </form>
 
@@ -101,27 +101,65 @@
       $('#submit-button').on('click', function(e){
         e.preventDefault();
 
+
+
         var userInput = $('#userInput').val();
+
+        var userInputSplit = userInput.split(/\n/);
+
+
+        // console.log(userInputSplit);
+
         if( userInput === ""){
           alert(`Input is empty`);
         }else {
-          $('.playerList').append('<li>' + userInput + '</li>' );
 
-          // Turn list into an array in order to calculate total amount in list item
-           playersArray.push(userInput);
-          // console.log(playersArray);
+          //userinput make string in to array
+          console.log(userInputSplit)
 
-          //clearing input field
-          $('#userInput').val('')
+          //loop thru array and make each item into li
+
+          for(var i = 0; i < userInputSplit.length ; i++){
+            console.log(userInputSplit[i]);
+
+            // adding playername to li
+            $('.playerList').append('<li>' + userInputSplit[i] + '</li>' );
+
+          }
+
+          //project li
+
+          // $('.playerList').append('<li>' + userInput + '</li>' );
+
+          // // Turn list into an array in order to calculate total amount in list item
+           playersArray == userInputSplit;
+
+           playersArray.push(userInputSplit);
+          console.log(playersArray);
+
+          // //clearing input field
+          // $('#userInput').val('')
         }
 
         //total amount of players
         players = playersArray.length;
         $('.playersAmount').html(`Total number of players ${players}`);
 
-        // var totalPlayers = $('#totalPlayers').val();
-        // playersPerTeam = players / amountOfTeams;
-        // $('.playersPerTeam').html(playersPerTeam);
+        //removing dudes
+        // $playerName = $('ul.playerList li')
+
+        // $playerName.on('click', function(){
+        //   var playerIndex = playersArray.indexOf($(this).text());
+        //   alert(playerIndex);
+
+        //   if (playerIndex !== -1) {
+        //     playersArray.splice(playerIndex, 1);
+        //   }
+
+        //   $(this).remove();
+        // });
+
+
       });
 
 
@@ -131,10 +169,12 @@
       });
 
 
-      //removing dudes
+
       // $('ul.playerList li').on('click', function(){
-      //     $(this).remove();
-      //     console.log(this);
+
+      //     $('.playerList li').css('color','green');
+      //     // $(this).remove();
+      //     // console.log(this);
       // })
 
 
@@ -254,98 +294,6 @@
         totalPlayers = 0;
         playersArray = [];
       });
-
-
-      //old function - approach two
-      // function chunkArray(playersArray, playersPerTeam) {
-      //     let results = [];
-
-      //     while (playersArray.length) {
-      //         results.push(playersArray.splice(0, playersPerTeam))
-      //     }
-
-      //     return results;
-      // }
-
-      // Split in group of 3 items
-      // var result = chunkify(playersArray, playersPerTeam);
-      // console.log(result);
-
-
-
-      //divide players into two teams
-
-      // $('.divide').on('click', function(e){
-      //   e.preventDefault();
-
-      //   //clearing the loop every time divide team is clicked
-      //   totalA = 0;
-      //   totalB = 0;
-      //   totalC = 0;
-      //   totalD = 0;
-      //   $('.teamA, .teamB, .teamC, .teamD').empty();
-      //   // $('.teamB').empty();
-      //   // $('.teamC').empty();
-      //   // $('.teamD').empty()
-
-
-      //   var smallestTeam = '';
-      //   var teamInLoopNow = '';
-
-
-      //approach one
-      //   // $(playersArray).each(function() {
-      //   //   // if the teams are uneven
-      //   //   if(totalA !== totalB ) {
-
-      //   //     //add a member to the smaller team
-      //   //     if (totalA < totalB){
-
-      //   //       $('.teamA').append('<li>' + this +'</li>' );
-      //   //         totalA = totalA + 1;
-
-      //   //     } else if (totalB < totalA){
-      //   //       // otherwise add a player to teamB
-      //   //       $('.teamB').append('<li>' + this +'</li>' );
-      //   //           totalB = totalB + 1;
-      //   //     } else if (totalC < totalD) {
-      //   //       // otherwise add a player to teamB
-      //   //       $('.teamB').append('<li>' + this +'</li>' );
-      //   //           totalC = totalC + 1;
-      //   //     } else{
-      //   //       // otherwise add a player to teamB
-      //   //       $('.teamB').append('<li>' + this +'</li>' );
-      //   //           totalD = totalD + 1;
-      //   //     }
-
-      //   //   }else {
-      //   //     //add a member to a random team
-      //   //     var randomTeam = Math.floor(Math.random() * 4);
-
-      //   //     if (randomTeam == 0){
-      //   //     // console.log(`${this} is on team a`);
-      //   //       $('.teamA').append('<li>' + this +'</li>' );
-      //   //         totalA = totalA + 1;
-
-      //   //     }else if (randomTeam == 1) {
-      //   //       // console.log(`${this} is on team b`);
-      //   //       $('.teamB').append('<li>' + this +'</li>' );
-      //   //           totalB = totalB + 1;
-      //   //     }else if (randomTeam == 2) {
-      //   //       // console.log(`${this} is on team b`);
-      //   //       $('.teamC').append('<li>' + this +'</li>' );
-      //   //           totalC = totalC + 1;
-      //   //     }else {
-      //   //       // console.log(`${this} is on team b`);
-      //   //       $('.teamD').append('<li>' + this +'</li>' );
-      //   //           totalD = totalD + 1;
-      //   //     }
-      //   //   }
-
-      //   //   console.log(`${totalA} total A and ${totalB} total B, ${totalC} total C and ${totalD} total D`);
-
-      //   // });
-      // });
 
 
 
